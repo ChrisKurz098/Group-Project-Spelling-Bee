@@ -55,4 +55,4 @@ function fetchExample(word) {
         .catch(function (error) { console.log("UNABLE TO CONNECT", error); });
 }
 fetchWord();
-//---------------------------------------------------END FETCH CODE-----------------------------------------//
+//---------------------------------------------------END FETCH CODE-----------------------------------------//chris
