@@ -19,19 +19,19 @@
         <audio hidden id = "audioPlayer" src = ""></audio>
         <!--------------------------------------------------------->
         
-    <section id="main">
+    <main>
 
         <!-------------------------START SCREEN-------------------->
-        <div id="start-screen">
+        <section id="start-screen">
             <div>
                 <h2>Test Your Spelling Chops</h2>
                 <h3>Press Start to Begin</h3>
                 <button id= "start-btn" onclick = "main()">START</button>
             </div>
-        </div>
+        </section>
 
         <!-------------------------GAME SCREEN-------------------->
-        <div id="game-screen">
+        <section id="game-screen">
             <div id="current-stats-container">
                 <p class="game-stat" id="right-wrong-display">
                     right/wrong
@@ -41,35 +41,58 @@
                 </p>
             </div>
             <form id="interactive-container">
-                <input id="answer-input" type="text" placeholder="Your Answer">
+                <input class="input" id="answer-input" type="text" placeholder="Your Answer">
                 <div id="game-buttons-container">
                     <button disabled class="btn" id="play-word-btn">Play Word</button>
-                    <button disabled class="btn" id="submit-btn">Submit</button>
+                    <button disabled class="btn" id="submit-answer-btn">Submit</button>
                 </div>
             </form>
             <div id="def-container">
-                <p id="def-title">Definition: </p>
-                <p id="def"></p>
+                <h2>Definition: </h2>
+                <div id = "def-p-container">
+                    <p id="def">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-------------------------END SCREEN-------------------->
-        <div id="end-screen">
-            [PLACEHOLDER TEXT: END SCREEN]
-        </div>
+        <section id="end-screen">
+            <div id="final-score-display">
+                <h2 id="final-score-title">Final Score:</h2>
+                <p id="final-score">8/10</p>
+            </div>
+            <div id="new-hs-container">
+                <h2 id="new-hs-title">
+                    You Got A New High Score!
+                </h2>
+                <form id="hs-interactive-container">
+                    <input class="input" id="initials-input" type="text" placeholder="Your Initials">
+                    <button disabled class="btn" id="sumbit-name-btn" >Submit</button>
+                </form>
+            </div>
+            <div id="final-lists-container">
+                <div class="list" id="correct-answers">
+                    <h2>Correct Words:</h2>
+                    <ol id="correct-list"></ol>
+                </div>
+                <div class="list" id="incorrect-answers">
+                    <h2>Incorrect Words:</h2>
+                    <ol id="incorrect-list"></ol>
+                </div>
+            </div>
+        </section>
 
         <!---------------------TOP SCORE DISPLAY----------------->
-        <div id="top-score">
+        <section id="top-score">
             <h2>Top Scores</h2>
             <ol id = "score-list">
                 <!--We will dynamically create scores here-->
-                
+        
             </ol>
-        </div>
+        </section>
 
-    </section>
-    <!--This first script is the TTS SDK-->
-    <script src="assets/js/voicerss-tts.min.js"></script>
+    </main>
+
     <script src="assets/js/script.js"></script>
 </body>
 

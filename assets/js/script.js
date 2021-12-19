@@ -14,7 +14,7 @@ function main() {
     const endScreen = document.getElementById("end-screen");
     //hide all but except gameScreen
     startScreen.style.display = "none";
-    gameScreen.style.display = "block"; //this may have to change to flex depending on tailwind
+    gameScreen.style.display ="block"; //this may have to change to flex depending on tailwind
     endScreen.style.display = "none";
     //etch the array of word data
     wordData = fetchWord();
