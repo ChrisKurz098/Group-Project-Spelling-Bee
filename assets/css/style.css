@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 ! tailwindcss v3.0.7 | MIT License | https://tailwindcss.com
 */
@@ -421,4 +422,58 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 [hidden] {
   display: none;
+=======
+/*THESE ARE TEMP STYLES TO MAKE THINGS EASIER TO LOOK AT*/
+*{
+    text-align: center;
+}
+
+div{
+    margin: 10px;
+    border: 2px solid black;
+    animation: growIn 1s
+}
+
+#start-btn {
+    animation: bounce 1s infinite alternate;
+}
+
+
+
+
+
+
+
+
+/*--------------------------ANIMATIONS------------------------------*/
+@keyframes bounce {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(2);
+    }
+    /*use this with - animation: bounce 1s infinite alternate*/
+
+}
+
+@keyframes bounce {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(2);
+    }
+    /*use this with - animation: bounce 1s infinite alternate*/
+
+}
+
+@keyframes growIn {
+    from {
+        transform: scale(0);
+    }
+ 
+    /*use this with - animation: growIn 1s*/
+
+>>>>>>> develop
 }
