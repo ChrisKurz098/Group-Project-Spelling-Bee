@@ -1,4 +1,37 @@
-//--------------------------------------------------BEGIN FETCH CODE-----------------------------------------//
+//-------get screen ready--------//
+//very first thing, before any user interaction, is to hide all divs except for start screen
+document.getElementById("game-screen").style.display = "none";
+document.getElementById("end-screen").style.display = "none";
+//THEN POPULATE LEADER BOARD
+
+
+
+//-------------------------------MAIN CODE---------------------------------------//
+function main() {
+    //set variables for each screen div
+    const startScreen = document.getElementById("start-screen");
+    const gameScreen = document.getElementById("game-screen");
+    const endScreen = document.getElementById("end-screen");
+    //hide all but except gameScreen
+    startScreen.style.display = "none";
+    gameScreen.style.display = "block"; //this may have to change to flex depending on tailwind
+    endScreen.style.display = "none";
+    //etch the array of word data
+    wordData = fetchWord();
+    /*wordData contains: 
+    - wordData.name
+    - wordData.example
+    - wordData.definition*/
+
+//playVoice(text) //run this function and pass the text for the api to speak
+}
+
+//---------------------------END MAIN CODE-----------------------------------//
+
+
+
+
+//-----------------------------BEGIN FETCH CODE-----------------------------//
 function fetchWord() {
     const wordUrl = "https://random-word-api.herokuapp.com/word?number=1&swear=0";
     let word = "none"
@@ -54,5 +87,14 @@ function fetchExample(word) {
     })
         .catch(function (error) { console.log("UNABLE TO CONNECT", error); });
 }
-fetchWord();
-//---------------------------------------------------END FETCH CODE-----------------------------------------//
+
+//----------------------------------END FETCH CODE-----------------------------------------//
+
+//---------------------------------Play Sound Function------------------------------------//
+function playVoice(text) {
+let player = document.getElementById("audioPlayer");
+//no need to fetch api url. Just put the url into the sorce for the audip player to play
+let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&src=" + text;
+player.src = audio;
+player.play();
+}
