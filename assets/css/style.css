@@ -6,4 +6,48 @@
 div{
     margin: 10px;
     border: 2px solid black;
+    animation: growIn 1s
+}
+
+#start-btn {
+    animation: bounce 1s infinite alternate;
+}
+
+
+
+
+
+
+
+
+/*--------------------------ANIMATIONS------------------------------*/
+@keyframes bounce {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(2);
+    }
+    /*use this with - animation: bounce 1s infinite alternate*/
+
+}
+
+@keyframes bounce {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(2);
+    }
+    /*use this with - animation: bounce 1s infinite alternate*/
+
+}
+
+@keyframes growIn {
+    from {
+        transform: scale(0);
+    }
+ 
+    /*use this with - animation: growIn 1s*/
+
 }
