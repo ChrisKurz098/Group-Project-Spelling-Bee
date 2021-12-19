@@ -32,7 +32,25 @@
 
         <!-------------------------GAME SCREEN-------------------->
         <div id="game-screen">
-            [PLACEHOLDER TEXT: GAME SCREEN]
+            <div id="current-stats-container">
+                <p class="game-stat" id="right-wrong-display">
+                    right/wrong
+                </p>
+                <p class="game-stat" id="current-correct-answers-container">
+                    4/10
+                </p>
+            </div>
+            <form id="interactive-container">
+                <input id="answer-input" type="text" placeholder="Your Answer">
+                <div id="game-buttons-container">
+                    <button disabled class="btn" id="play-word-btn">Play Word</button>
+                    <button disabled class="btn" id="submit-btn">Submit</button>
+                </div>
+            </form>
+            <div id="def-container">
+                <p id="def-title">Definition: </p>
+                <p id="def"></p>
+            </div>
         </div>
 
         <!-------------------------END SCREEN-------------------->

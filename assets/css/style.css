@@ -13,6 +13,44 @@ div{
     animation: bounce 1s infinite alternate;
 }
 
+#current-stats-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-stat{
+  border: 2px solid black;
+  margin: 0 10px 0 10px;
+}
+
+form #answer-input {
+  border: 2px solid black;
+}
+
+#game-buttons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  border: 2px solid black;
+  margin: 0 10px 0 10px;
+}
+
+#answer-input {
+  border: 1px;
+  
+}
+
+#def-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 
 
