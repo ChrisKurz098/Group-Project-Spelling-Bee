@@ -2,7 +2,11 @@
 //very first thing, before any user interaction, is to hide all divs except for start screen
 document.getElementById("game-screen").style.display = "none";
 document.getElementById("end-screen").style.display = "none";
-//THEN POPULATE LEADER BOARD
+//THEN POPULATE TOP SCORES
+//this checks for if there isnt a high score key saved in local storage and makes one with default values
+initTopScore();
+//this is here just to log what is saved in localStorage to the console
+console.log("Top Score Array: ", loadTopScores());
 
 
 
@@ -29,6 +33,52 @@ function main() {
 //---------------------------END MAIN CODE-----------------------------------//
 
 
+///INIT TOP SCORE DATA IN localStorage///
+function initTopScore(){
+    checkIfHighScore = localStorage.getItem("topScores")
+    //if there isnt a high score key saved in local storage, make one
+    if (!checkIfHighScore) {
+        let defaultScore = [{
+            name: "Fred",
+            score: 80
+        },
+        {
+            name: "Sally",
+            score: 60
+        },
+        {
+            name: "Bill",
+            score: 40
+        },
+        {
+            name: "Ted",
+            score: 20
+        },
+        {
+            name: "Greg",
+            score: 10
+        }];
+        //save default top scores from above to localStorage
+        saveTopScores(defaultScore);
+        
+    };
+
+    return;
+}
+
+/////////////////LOAD SCORES FUNCTION/////////////////////////////
+//this returns the top scores saved in localStorage
+function loadTopScores() {
+    let currentTopScores = localStorage.getItem("topScores");
+    currentTopScores = JSON.parse(currentTopScores);
+    return currentTopScores;
+}
+/////////////////SAVE SCORES FUNCTION/////////////////////////////
+//send the updated array of top scores here to be saved
+function saveTopScores(newTopScores) {
+    localStorage.setItem("topScores", JSON.stringify(newTopScores));
+    return;
+}
 
 
 //-----------------------------BEGIN FETCH CODE-----------------------------//
@@ -68,9 +118,8 @@ function fetchExample(word) {
                         definition: data[0].meanings[0].definitions[0].definition
                     };
                     console.log("Word info: ", wordData);
-                    //pass data to main code
-                    //UNCOMMENT CODE BELOW AND UPDATE WITH MAIN FUNCTIONS NAME WHEN READY
-                    //main(wordData);
+                    //retunr data
+                    return wordData;
                 }
                 else {
                     console.log("Non valid word. Running fetch again");
