@@ -139,6 +139,7 @@ function fetchExample(word,defEl) {
                     //enable play-word btn
                     playWordBtnEl.disabled = false;
                     //return data
+                    generateVoiceText();
                     return wordData;
                 }
                 else {
