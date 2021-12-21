@@ -138,8 +138,6 @@ function fetchExample(word,defEl) {
                     defEl.style.animation = "none";
                     //enable play-word btn
                     playWordBtnEl.disabled = false;
-                    //playVoiceText
-                    
                     //return data
                     return wordData;
                 }
