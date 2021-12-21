@@ -8,6 +8,11 @@ initTopScore();
 //this is here just to log what is saved in localStorage to the console
 console.log("Top Score Array: ", loadTopScores());
 
+//submit answer button
+var submitBtnEl = document.querySelector("#submit-answer-btn");
+// users form input element
+var answerInputEl = document.querySelector("#answer-input");
+
 
 
 //-------------------------------MAIN CODE---------------------------------------//
@@ -147,3 +152,25 @@ let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en
 player.src = audio;
 player.play();
 }
+ 
+var userAnswerHandler = function (){
+   
+    //Recieve the users input
+    var usersAnswer = answerInputEl.value;
+    
+    var word = getWordObj();
+    console.log(word);
+  
+}
+
+submitBtnEl.addEventListener("click", userAnswerHandler);
+//compare users input to word
+//if the same, continue game, by calling for a different word now
+//display correct on screen
+//tally that round to keep track of the correct answers and display later
+//if not the same spelling, tally that round to keep track of incorrect answers
+//display incorrect on screen
+//if user has 3 incorrect answers display hs screen
+// load that word into an array to later display all incorrect words
+// laod users input into an array to later display all incorrect words
+// remember to delete the code from the main to avoid merging issues IMPORTANT

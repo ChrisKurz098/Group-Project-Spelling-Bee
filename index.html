@@ -43,8 +43,8 @@
             <form id="interactive-container">
                 <input class="input" id="answer-input" type="text" placeholder="Your Answer">
                 <div id="game-buttons-container">
-                    <button disabled class="btn" id="play-word-btn">Play Word</button>
-                    <button disabled class="btn" id="submit-answer-btn">Submit</button>
+                    <button disabled type="button" class="btn" id="play-word-btn">Play Word</button>
+                    <button type="button" onclick = "userAnswerHandler()"class="btn" id="submit-answer-btn">Submit</button>
                 </div>
             </form>
             <div id="def-container">
@@ -67,7 +67,7 @@
                 </h2>
                 <form id="hs-interactive-container">
                     <input class="input" id="initials-input" type="text" placeholder="Your Initials">
-                    <button disabled class="btn" id="sumbit-name-btn" >Submit</button>
+                    <button disabled type="button" class="btn" id="sumbit-name-btn" >Submit</button>
                 </form>
             </div>
             <div id="final-lists-container">
