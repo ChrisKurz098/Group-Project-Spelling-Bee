@@ -17,7 +17,7 @@ var gameWords = [];
 var userAnswers = [];
 var correctAnswers = 0;
 var wrongAnswers = 0;
-var x;
+var x = 0;
 //set variables for each screen div
 const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
@@ -168,6 +168,14 @@ var userAnswerHandler = function (event){
     //Recieve the users input
     var userAnswer = answerInputEl.value;
     userAnswer = userAnswer.trim().toLowerCase();
+
+    //collect the word user got
+    gameWords[x] = word;
+    //collect the users answer
+    userAnswers[x] = userAnswer;
+    //for next round
+    x++;
+
     //compare users input to word
     if (userAnswer === word) {
         rightWrongDisplay.innerHTML = "CORRECT";
@@ -180,25 +188,42 @@ var userAnswerHandler = function (event){
         rightWrongDisplay.innerHTML = "INCORRECT";
         //after three strikes
         if (wrongAnswers===3){
+            loadEndScreen();
             gameScreen.style.display ="none"; //this may have to change to flex depending on tailwind
             endScreen.style.display = "block";
             return;
         }
     }
 
-    //collect the word user got
-    gameWords[x] = word;
-    //collect the users answer
-    userAnswers[x] = userAnswer;
-    //next round
-    x++;
     //reset form for next input
     answerInputEl.value = "";
     // call another word
     fetchWord();
-    
+}
 
+var loadEndScreen = function(){
+    //page elements
+    var finalScore = document.querySelector("#final-score");
+    var gameWordsEl = document.querySelector("#words-list");
+    var userAnswersEl = document.querySelector("#answers-list");
+    //display your score of correct answers
+    finalScore.innerHTML = "Correct Answers: " + correctAnswers;
+    //display game words and users answers for comparison
+    for (let i = 0; i < x; i++) {
+        // create list item
+        var wordEl = document.createElement("li");
+        // give it a value
+        wordEl.innerHTML = gameWords[i]
+        // append it to ordered list
+        gameWordsEl.appendChild(wordEl);
+
+        // create list item
+        var userAnswerEl = document.createElement("li");
+        // give it a value
+        userAnswerEl.innerHTML = userAnswers[i];
+        // append it to ordered list
+        userAnswersEl.appendChild(userAnswerEl);
+    }
 }
 
 submitBtnEl.addEventListener("click", userAnswerHandler);
-//if user has 3 incorrect answers display hs screen
