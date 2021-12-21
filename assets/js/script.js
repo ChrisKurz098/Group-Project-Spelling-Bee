@@ -123,7 +123,7 @@ function fetchExample(word,defEl) {
             response.json().then(function (data) {
                 console.log("data: ", data);
                 //if there is an example, continue. if not repeat
-                if (data[0].meanings[0].definitions[0].example) {
+                if (data[0].meanings[0].definitions[0].example || data[0].meanings[0].definitions[0].definition.includes(data[0].word)) {
                     //check if random word is dictionary word
                     wordData = {
                         word: data[0].word,
