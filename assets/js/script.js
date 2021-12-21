@@ -167,7 +167,8 @@ function playVoice(text) {
     console.log(text);
     let player = document.getElementById("audioPlayer");
     //no need to fetch api url. Just put the url into the source for the audio player to play
-    let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&src=" + text;
+    
+    let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&c=MP3&f=16khz_16bit_stereo&src=" + text;
     player.src = audio;
     player.play();
 }
