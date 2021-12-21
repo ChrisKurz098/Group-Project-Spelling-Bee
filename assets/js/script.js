@@ -25,10 +25,10 @@ const endScreen = document.getElementById("end-screen");
 
 //-------------------------------MAIN CODE---------------------------------------//
 function main() {
-    
+
     //hide all but except gameScreen
     startScreen.style.display = "none";
-    gameScreen.style.display ="block"; //this may have to change to flex depending on tailwind
+    gameScreen.style.display = "block"; //this may have to change to flex depending on tailwind
     endScreen.style.display = "none";
     //etch the array of word data
     wordData = fetchWord();
@@ -37,14 +37,14 @@ function main() {
     - wordData.example
     - wordData.definition*/
 
-//playVoice(text) //run this function and pass the text for the api to speak
+    //playVoice(text) //run this function and pass the text for the api to speak
 }
 
 //---------------------------END MAIN CODE-----------------------------------//
 
 
 ///INIT TOP SCORE DATA IN localStorage///
-function initTopScore(){
+function initTopScore() {
     checkIfHighScore = localStorage.getItem("topScores")
     //if there isnt a high score key saved in local storage, make one
     if (!checkIfHighScore) {
@@ -70,7 +70,7 @@ function initTopScore(){
         }];
         //save default top scores from above to localStorage
         saveTopScores(defaultScore);
-        
+
     };
 
     return;
@@ -93,6 +93,9 @@ function saveTopScores(newTopScores) {
 
 //-----------------------------BEGIN FETCH CODE-----------------------------//
 function fetchWord() {
+    let defEl = document.getElementById("def");
+    defEl.textContent = "Please Wait While We Grab a New Word...";
+    defEl.style.animation = "loading 3s infinite alternate";
     const wordUrl = "https://random-word-api.herokuapp.com/word?number=1&swear=0";
     let word = "none"
     fetch(wordUrl).then(function (response) {
@@ -101,7 +104,7 @@ function fetchWord() {
                 word = data[0];
                 console.log("word:", word);
                 //once we get a word, use that word to fecth an example and def
-                fetchExample(word);
+                fetchExample(word,defEl);
             });
         } else { console.log("Random Word: NO RESPONSE ... retying fetch"); fetchWord(); }
     })
@@ -110,11 +113,11 @@ function fetchWord() {
         });
 }
 
-function fetchExample(word) {
+function fetchExample(word,defEl) {
     let exampleUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word;
     //we will pass wordData to the main code. 
     //It is an object containing "word", "example" and "definition"
-    
+
     fetch(exampleUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -128,6 +131,9 @@ function fetchExample(word) {
                         definition: data[0].meanings[0].definitions[0].definition
                     };
                     console.log("Word info: ", wordData);
+                    //End animation and say ready
+                    defEl.textContent = "Ready!";
+                    defEl.style.animation = "none";
                     //retunr data
                     return wordData;
                 }
@@ -151,14 +157,14 @@ function fetchExample(word) {
 
 //---------------------------------Play Sound Function------------------------------------//
 function playVoice(text) {
-let player = document.getElementById("audioPlayer");
-//no need to fetch api url. Just put the url into the sorce for the audip player to play
-let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&src=" + text;
-player.src = audio;
-player.play();
+    let player = document.getElementById("audioPlayer");
+    //no need to fetch api url. Just put the url into the sorce for the audip player to play
+    let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&src=" + text;
+    player.src = audio;
+    player.play();
 }
- 
-var userAnswerHandler = function (event){
+
+var userAnswerHandler = function (event) {
     event.preventDefault();
     //page elements
     var rightWrongDisplay = document.querySelector("#right-wrong-display");
@@ -183,13 +189,13 @@ var userAnswerHandler = function (event){
         correctAnswers++;
         correctAnswersTally.innerHTML = correctAnswers;
     }
-    else{
+    else {
         wrongAnswers++;
         rightWrongDisplay.innerHTML = "INCORRECT";
         //after three strikes
-        if (wrongAnswers===3){
+        if (wrongAnswers === 3) {
             loadEndScreen();
-            gameScreen.style.display ="none"; //this may have to change to flex depending on tailwind
+            gameScreen.style.display = "none"; //this may have to change to flex depending on tailwind
             endScreen.style.display = "block";
             return;
         }
@@ -201,7 +207,7 @@ var userAnswerHandler = function (event){
     fetchWord();
 }
 
-var loadEndScreen = function(){
+var loadEndScreen = function () {
     //page elements
     var finalScore = document.querySelector("#final-score");
     var gameWordsEl = document.querySelector("#words-list");
