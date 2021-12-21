@@ -3,13 +3,15 @@
 document.getElementById("game-screen").style.display = "none";
 document.getElementById("end-screen").style.display = "none";
 //THEN POPULATE TOP SCORES
-//this checks for if there isnt a high score key saved in local storage and makes one with default values
+//this checks for if there isn't a high score key saved in local storage and makes one with default values
 initTopScore();
 //this is here just to log what is saved in localStorage to the console
 console.log("Top Score Array: ", loadTopScores());
 
 //submit answer button
 var submitBtnEl = document.querySelector("#submit-answer-btn");
+//play word button
+var playWordBtnEl = document.querySelector("#play-word-btn");
 // users form input element
 var answerInputEl = document.querySelector("#answer-input");
 let wordData = {};
@@ -46,7 +48,7 @@ function main() {
 ///INIT TOP SCORE DATA IN localStorage///
 function initTopScore() {
     checkIfHighScore = localStorage.getItem("topScores")
-    //if there isnt a high score key saved in local storage, make one
+    //if there isn't a high score key saved in local storage, make one
     if (!checkIfHighScore) {
         let defaultScore = [{
             name: "Fred",
@@ -103,7 +105,7 @@ function fetchWord() {
             response.json().then(function (data) {
                 word = data[0];
                 console.log("word:", word);
-                //once we get a word, use that word to fecth an example and def
+                //once we get a word, use that word to fetch an example and def
                 fetchExample(word,defEl);
             });
         } else { console.log("Random Word: NO RESPONSE ... retying fetch"); fetchWord(); }
@@ -134,7 +136,9 @@ function fetchExample(word,defEl) {
                     //End animation and say ready
                     defEl.textContent = (wordData.definition.charAt(0).toUpperCase() + wordData.definition.slice(1));
                     defEl.style.animation = "none";
-                    //retunr data
+                    //enable play-word btn
+                    playWordBtnEl.disabled = false;
+                    //return data
                     return wordData;
                 }
                 else {
@@ -145,8 +149,8 @@ function fetchExample(word,defEl) {
             })
         }
         else {
-            console.log("Word Example: Error Durring Fetch");
-            console.log("Word May Not Exsist in Database ... Retry Fetch");
+            console.log("Word Example: Error During Fetch");
+            console.log("Word May Not Exist in Database ... Retry Fetch");
             fetchWord();
         }
 
@@ -157,12 +161,24 @@ function fetchExample(word,defEl) {
 //----------------------------------END FETCH CODE-----------------------------------------//
 
 //---------------------------------Play Sound Function------------------------------------//
+
 function playVoice(text) {
+    console.log(text);
     let player = document.getElementById("audioPlayer");
-    //no need to fetch api url. Just put the url into the sorce for the audip player to play
+    //no need to fetch api url. Just put the url into the source for the audio player to play
     let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&src=" + text;
     player.src = audio;
     player.play();
+}
+//--------------------------------Generate Voice Text Function-----------------------------//
+function generateVoiceText() {
+    let word = wordData.word;
+    console.log(wordData);
+    console.log(word);
+    let sentenceExample = wordData.example;
+    //Added " . " to the string to create a pause between the word and example statement when the text is spoken
+    var voiceText = "Spell the word:"+[word]+" . "+ "As in:"+[sentenceExample];
+    playVoice(voiceText);
 }
 
 var userAnswerHandler = function (event) {
@@ -172,7 +188,7 @@ var userAnswerHandler = function (event) {
     var correctAnswersTally = document.querySelector("#current-correct-answers-container");
     //get data from fetch api
     var word = wordData.word;
-    //Recieve the users input
+    //Receive the users input
     var userAnswer = answerInputEl.value;
     userAnswer = userAnswer.trim().toLowerCase();
 
@@ -234,3 +250,5 @@ var loadEndScreen = function () {
 }
 
 submitBtnEl.addEventListener("click", userAnswerHandler);
+//event listener for Play Word button
+playWordBtnEl.addEventListener("click", generateVoiceText);
