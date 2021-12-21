@@ -132,7 +132,7 @@ function fetchExample(word,defEl) {
                     };
                     console.log("Word info: ", wordData);
                     //End animation and say ready
-                    defEl.textContent = "Ready!";
+                    defEl.textContent = "Definition: " + (wordData.definition.charAt(0).toUpperCase() + wordData.definition.slice(1));
                     defEl.style.animation = "none";
                     //retunr data
                     return wordData;
