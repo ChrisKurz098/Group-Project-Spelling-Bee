@@ -33,18 +33,14 @@
         <!-------------------------GAME SCREEN-------------------->
         <section id="game-screen">
             <div id="current-stats-container">
-                <p class="game-stat" id="right-wrong-display">
-                    right/wrong
-                </p>
-                <p class="game-stat" id="current-correct-answers-container">
-                    4/10
-                </p>
+                <p class="game-stat" id="right-wrong-display"></p>
+                <p class="game-stat" id="current-correct-answers-container"></p>
             </div>
             <form id="interactive-container">
                 <input class="input" id="answer-input" type="text" placeholder="Your Answer">
                 <div id="game-buttons-container">
-                    <button disabled class="btn" id="play-word-btn">Play Word</button>
-                    <button disabled class="btn" id="submit-answer-btn">Submit</button>
+                    <button disabled type="button" class="btn" id="play-word-btn">Play Word</button>
+                    <button type="submit" class="btn" id="submit-answer-btn">Submit</button>
                 </div>
             </form>
             <div id="def-container">
@@ -58,7 +54,6 @@
         <!-------------------------END SCREEN-------------------->
         <section id="end-screen">
             <div id="final-score-display">
-                <h2 id="final-score-title">Final Score:</h2>
                 <p id="final-score">8/10</p>
             </div>
             <div id="new-hs-container">
@@ -67,17 +62,17 @@
                 </h2>
                 <form id="hs-interactive-container">
                     <input class="input" id="initials-input" type="text" placeholder="Your Initials">
-                    <button disabled class="btn" id="sumbit-name-btn" >Submit</button>
+                    <button disabled type="button" class="btn" id="sumbit-name-btn" >Submit</button>
                 </form>
             </div>
             <div id="final-lists-container">
-                <div class="list" id="correct-answers">
-                    <h2>Correct Words:</h2>
-                    <ol id="correct-list"></ol>
+                <div class="list" id="game-words">
+                    <h2>Words:</h2>
+                    <ol id="words-list"></ol>
                 </div>
-                <div class="list" id="incorrect-answers">
-                    <h2>Incorrect Words:</h2>
-                    <ol id="incorrect-list"></ol>
+                <div class="list" id="user-answers">
+                    <h2>Your Answers:</h2>
+                    <ol id="answers-list"></ol>
                 </div>
             </div>
         </section>

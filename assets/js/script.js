@@ -8,14 +8,24 @@ initTopScore();
 //this is here just to log what is saved in localStorage to the console
 console.log("Top Score Array: ", loadTopScores());
 
-
+//submit answer button
+var submitBtnEl = document.querySelector("#submit-answer-btn");
+// users form input element
+var answerInputEl = document.querySelector("#answer-input");
+let wordData = {};
+var gameWords = [];
+var userAnswers = [];
+var correctAnswers = 0;
+var wrongAnswers = 0;
+var x = 0;
+//set variables for each screen div
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game-screen");
+const endScreen = document.getElementById("end-screen");
 
 //-------------------------------MAIN CODE---------------------------------------//
 function main() {
-    //set variables for each screen div
-    const startScreen = document.getElementById("start-screen");
-    const gameScreen = document.getElementById("game-screen");
-    const endScreen = document.getElementById("end-screen");
+    
     //hide all but except gameScreen
     startScreen.style.display = "none";
     gameScreen.style.display ="block"; //this may have to change to flex depending on tailwind
@@ -104,7 +114,7 @@ function fetchExample(word) {
     let exampleUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word;
     //we will pass wordData to the main code. 
     //It is an object containing "word", "example" and "definition"
-    let wordData = {};
+    
     fetch(exampleUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -147,3 +157,73 @@ let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en
 player.src = audio;
 player.play();
 }
+ 
+var userAnswerHandler = function (event){
+    event.preventDefault();
+    //page elements
+    var rightWrongDisplay = document.querySelector("#right-wrong-display");
+    var correctAnswersTally = document.querySelector("#current-correct-answers-container");
+    //get data from fetch api
+    var word = wordData.word;
+    //Recieve the users input
+    var userAnswer = answerInputEl.value;
+    userAnswer = userAnswer.trim().toLowerCase();
+
+    //collect the word user got
+    gameWords[x] = word;
+    //collect the users answer
+    userAnswers[x] = userAnswer;
+    //for next round
+    x++;
+
+    //compare users input to word
+    if (userAnswer === word) {
+        rightWrongDisplay.innerHTML = "CORRECT";
+        //add tally
+        correctAnswers++;
+        correctAnswersTally.innerHTML = correctAnswers;
+    }
+    else{
+        wrongAnswers++;
+        rightWrongDisplay.innerHTML = "INCORRECT";
+        //after three strikes
+        if (wrongAnswers===3){
+            loadEndScreen();
+            gameScreen.style.display ="none"; //this may have to change to flex depending on tailwind
+            endScreen.style.display = "block";
+            return;
+        }
+    }
+
+    //reset form for next input
+    answerInputEl.value = "";
+    // call another word
+    fetchWord();
+}
+
+var loadEndScreen = function(){
+    //page elements
+    var finalScore = document.querySelector("#final-score");
+    var gameWordsEl = document.querySelector("#words-list");
+    var userAnswersEl = document.querySelector("#answers-list");
+    //display your score of correct answers
+    finalScore.innerHTML = "Correct Answers: " + correctAnswers;
+    //display game words and users answers for comparison
+    for (let i = 0; i < x; i++) {
+        // create list item
+        var wordEl = document.createElement("li");
+        // give it a value
+        wordEl.innerHTML = gameWords[i]
+        // append it to ordered list
+        gameWordsEl.appendChild(wordEl);
+
+        // create list item
+        var userAnswerEl = document.createElement("li");
+        // give it a value
+        userAnswerEl.innerHTML = userAnswers[i];
+        // append it to ordered list
+        userAnswersEl.appendChild(userAnswerEl);
+    }
+}
+
+submitBtnEl.addEventListener("click", userAnswerHandler);
