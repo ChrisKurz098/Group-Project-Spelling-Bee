@@ -138,6 +138,7 @@ function fetchExample(word,defEl) {
                     return wordData;
                 }
                 else {
+                    if (data[0].meanings[0].definitions[0].definition.includes(data[0].word)){console.log("!Word is in definition!");}
                     console.log("Non valid word. Running fetch again");
                     fetchWord();
                 }
