@@ -33,18 +33,14 @@
         <!-------------------------GAME SCREEN-------------------->
         <section id="game-screen">
             <div id="current-stats-container">
-                <p class="game-stat" id="right-wrong-display">
-                    right/wrong
-                </p>
-                <p class="game-stat" id="current-correct-answers-container">
-                    4/10
-                </p>
+                <p class="game-stat" id="right-wrong-display"></p>
+                <p class="game-stat" id="current-correct-answers-container"></p>
             </div>
             <form id="interactive-container">
                 <input class="input" id="answer-input" type="text" placeholder="Your Answer">
                 <div id="game-buttons-container">
                     <button disabled type="button" class="btn" id="play-word-btn">Play Word</button>
-                    <button type="button" onclick = "userAnswerHandler()"class="btn" id="submit-answer-btn">Submit</button>
+                    <button type="submit" class="btn" id="submit-answer-btn">Submit</button>
                 </div>
             </form>
             <div id="def-container">

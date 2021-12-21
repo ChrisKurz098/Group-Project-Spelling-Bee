@@ -12,15 +12,20 @@ console.log("Top Score Array: ", loadTopScores());
 var submitBtnEl = document.querySelector("#submit-answer-btn");
 // users form input element
 var answerInputEl = document.querySelector("#answer-input");
-
-
+let wordData = {};
+var gameWords = [];
+var userAnswers = [];
+var correctAnswers = 0;
+var wrongAnswers = 0;
+var x;
+//set variables for each screen div
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementById("game-screen");
+const endScreen = document.getElementById("end-screen");
 
 //-------------------------------MAIN CODE---------------------------------------//
 function main() {
-    //set variables for each screen div
-    const startScreen = document.getElementById("start-screen");
-    const gameScreen = document.getElementById("game-screen");
-    const endScreen = document.getElementById("end-screen");
+    
     //hide all but except gameScreen
     startScreen.style.display = "none";
     gameScreen.style.display ="block"; //this may have to change to flex depending on tailwind
@@ -109,7 +114,7 @@ function fetchExample(word) {
     let exampleUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word;
     //we will pass wordData to the main code. 
     //It is an object containing "word", "example" and "definition"
-    let wordData = {};
+    
     fetch(exampleUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -153,24 +158,47 @@ player.src = audio;
 player.play();
 }
  
-var userAnswerHandler = function (){
-   
+var userAnswerHandler = function (event){
+    event.preventDefault();
+    //page elements
+    var rightWrongDisplay = document.querySelector("#right-wrong-display");
+    var correctAnswersTally = document.querySelector("#current-correct-answers-container");
+    //get data from fetch api
+    var word = wordData.word;
     //Recieve the users input
-    var usersAnswer = answerInputEl.value;
+    var userAnswer = answerInputEl.value;
+    userAnswer = userAnswer.trim().toLowerCase();
+    //compare users input to word
+    if (userAnswer === word) {
+        rightWrongDisplay.innerHTML = "CORRECT";
+        //add tally
+        correctAnswers++;
+        correctAnswersTally.innerHTML = correctAnswers;
+    }
+    else{
+        wrongAnswers++;
+        rightWrongDisplay.innerHTML = "INCORRECT";
+        //after three strikes
+        if (wrongAnswers===3){
+            gameScreen.style.display ="none"; //this may have to change to flex depending on tailwind
+            endScreen.style.display = "block";
+            return;
+        }
+    }
+
+    //collect the word user got
+    gameWords[x] = word;
+    //collect the users answer
+    userAnswers[x] = userAnswer;
+    //next round
+    x++;
+    //reset form for next input
+    answerInputEl.value = "";
+    // call another word
+    fetchWord();
     
-    var word = getWordObj();
-    console.log(word);
-  
+
 }
 
 submitBtnEl.addEventListener("click", userAnswerHandler);
-//compare users input to word
-//if the same, continue game, by calling for a different word now
-//display correct on screen
-//tally that round to keep track of the correct answers and display later
-//if not the same spelling, tally that round to keep track of incorrect answers
-//display incorrect on screen
 //if user has 3 incorrect answers display hs screen
-// load that word into an array to later display all incorrect words
-// laod users input into an array to later display all incorrect words
-// remember to delete the code from the main to avoid merging issues IMPORTANT
