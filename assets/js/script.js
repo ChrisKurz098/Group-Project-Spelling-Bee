@@ -2,11 +2,13 @@
 //very first thing, before any user interaction, is to hide all divs except for start screen
 document.getElementById("game-screen").style.display = "none";
 document.getElementById("end-screen").style.display = "none";
+// top score table body element
+var scoreTableEl = document.getElementById("score-table");
 //THEN POPULATE TOP SCORES
 //this checks for if there isn't a high score key saved in local storage and makes one with default values
 initTopScore();
-//this is here just to log what is saved in localStorage to the console
-console.log("Top Score Array: ", loadTopScores());
+//populates top score table
+displayTopScores();
 
 //submit answer button
 var submitBtnEl = document.querySelector("#submit-answer-btn");
@@ -20,10 +22,12 @@ var userAnswers = [];
 var correctAnswers = 0;
 var wrongAnswers = 0;
 var x = 0;
+
 //set variables for each screen div
 const startScreen = document.getElementById("start-screen");
 const gameScreen = document.getElementById("game-screen");
 const endScreen = document.getElementById("end-screen");
+
 
 //-------------------------------MAIN CODE---------------------------------------//
 function main() {
@@ -85,6 +89,7 @@ function loadTopScores() {
     currentTopScores = JSON.parse(currentTopScores);
     return currentTopScores;
 }
+
 /////////////////SAVE SCORES FUNCTION/////////////////////////////
 //send the updated array of top scores here to be saved
 function saveTopScores(newTopScores) {
@@ -92,6 +97,20 @@ function saveTopScores(newTopScores) {
     return;
 }
 
+//----------------------DISPLAY TOP SCORES FUNCTION--------------------------//
+function displayTopScores() {
+    //retrieves locally stored scores
+    var scoreArray = loadTopScores();
+    for (i = 0; i<scoreArray.length; i++) {
+        //inserts new row element to table body
+        var scoreRowEl = scoreTableEl.insertRow(i);
+        //inserts new cells for name and score to row element
+        var nameItemEl = scoreRowEl.insertCell(0);
+        nameItemEl.textContent = scoreArray[i].name;
+        var scoreItemEl = scoreRowEl.insertCell(1);
+        scoreItemEl.textContent = scoreArray[i].score;
+    }
+}
 
 //-----------------------------BEGIN FETCH CODE-----------------------------//
 function fetchWord() {
@@ -251,6 +270,7 @@ var loadEndScreen = function () {
     }
 }
 
+
 //set variables
 const intialsInput = document.getElementById('initials-input');
 const sumbitNameBtn = document.getElementById('sumbit-name-btn');
@@ -273,6 +293,7 @@ console.log("clicked save button")
 
 
 };
+
 
 submitBtnEl.addEventListener("click", userAnswerHandler);
 //event listener for Play Word button
