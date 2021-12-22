@@ -2,9 +2,10 @@
 //very first thing, before any user interaction, is to hide all divs except for start screen
 document.getElementById("game-screen").style.display = "none";
 document.getElementById("end-screen").style.display = "none";
-//THEN POPULATE TOP SCORES
+
 //this checks for if there isn't a high score key saved in local storage and makes one with default values
 initTopScore();
+//THEN POPULATE TOP SCORES
 //this is here just to log what is saved in localStorage to the console
 console.log("Top Score Array: ", loadTopScores());
 
@@ -251,6 +252,8 @@ var loadEndScreen = function () {
         userAnswersEl.appendChild(userAnswerEl);
     }
 }
+
+
 
 submitBtnEl.addEventListener("click", userAnswerHandler);
 //event listener for Play Word button
