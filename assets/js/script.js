@@ -251,6 +251,29 @@ var loadEndScreen = function () {
     }
 }
 
+//set variables
+const intialsInput = document.getElementById('initials-input');
+const sumbitNameBtn = document.getElementById('sumbit-name-btn');
+
+////getting top score to sort
+const topScores = localStorage.getItem('topScores');
+
+
+////////reacts to changes to intial input feild
+intialsInput.addEventListener('keyup', () => {
+    console.log(intialsInput.value);
+    ////////////////keeps button dis abled unill text is typed in
+    sumbitNameBtn.disabled = !intialsInput.value;
+});
+
+//////save button function
+saveHighScore = (e) => {
+
+console.log("clicked save button")
+
+
+};
+
 submitBtnEl.addEventListener("click", userAnswerHandler);
 //event listener for Play Word button
 playWordBtnEl.addEventListener("click", generateVoiceText);
