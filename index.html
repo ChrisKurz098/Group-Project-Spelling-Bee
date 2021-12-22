@@ -77,13 +77,20 @@
             </div>
         </section>
 
-        <!---------------------TOP SCORE DISPLAY----------------->
-        <section id="top-score">
-            <h2>Top Scores</h2>
-            <ol id = "score-list">
-                <!--We will dynamically create scores here-->
-        
-            </ol>
+        <!---------------------TOP SCORE TABLE----------------------->
+        <section id="top-score" class="flex justify-center">
+          <table>
+						<thead>
+							<tr>
+								<th colspan="2">Top Scores</th>
+							</tr>
+							<tr>
+								<th>Name</th>
+								<th>Score</th>
+							</tr>
+						</thead>
+						<tbody id="score-table"></tbody>
+          </table>
         </section>
 
     </main>
