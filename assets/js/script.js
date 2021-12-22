@@ -34,6 +34,7 @@ function main() {
     endScreen.style.display = "none";
     //etch the array of word data
     wordData = fetchWord();
+
     /*wordData contains: 
     - wordData.name
     - wordData.example
