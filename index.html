@@ -6,93 +6,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--INSERT CSS library here-->
-   <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Spelling Bee</title>
 </head>
 
 <body>
-    <header>
-        <h1>Spelling Bee</h1>
-    </header>
-        <!---------This Is The Audio Player (always hidden)-------->
-        <audio hidden id = "audioPlayer" src = ""></audio>
-        <!--------------------------------------------------------->
+  
+    <!---------This Is The Audio Player (always hidden)-------->
+    <audio hidden id="audioPlayer" src=""></audio>
+    <!--------------------------------------------------------->
+
+    <main class="p-5 grid grid-flow-row-dense grid-cols-5 grid-rows-1">
         
-    <main>
-
-        <!-------------------------START SCREEN-------------------->
-        <section id="start-screen">
-            <div>
-                <h2>Test Your Spelling Chops</h2>
-                <h3>Press Start to Begin</h3>
-                <button id= "start-btn" onclick = "main()">START</button>
-            </div>
-        </section>
-
-        <!-------------------------GAME SCREEN-------------------->
-        <section id="game-screen">
-            <div id="current-stats-container">
-                <p class="game-stat" id="right-wrong-display"></p>
-                <p class="game-stat" id="current-correct-answers-container"></p>
-            </div>
-            <form id="interactive-container" spellcheck="false">
-                <input class="input" id="answer-input" type="text" placeholder="Your Answer">
-                <div id="game-buttons-container">
-                    <button type="button" class="btn" id="sumbit-name-btn" onclick="saveHighScore(event)">Submit</button>
-                    <button type="submit" class="btn" id="submit-answer-btn">Submit</button>
+       
+        <div class="lg:col-start-2 col-span-4 md:col-start-2 col-span-4 sm:col-start-1 col-span-5">
+            <header>
+                <h1>Spelling Bee</h1>
+            </header>
+            <!-------------------------START SCREEN-------------------->
+            <section id="start-screen">
+                <div>
+                    <h2>Test Your Spelling Chops</h2>
+                    <h3>Press Start to Begin</h3>
+                    <button id="start-btn" onclick="main()">START</button>
                 </div>
-            </form>
-            <div id="def-container">
-                <h2>Definition: </h2>
-                <div id = "def-p-container">
-                    <p id="def">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-------------------------END SCREEN-------------------->
-        <section id="end-screen">
-            <div id="final-score-display">
-                <p id="final-score">8/10</p>
-            </div>
-            <div id="new-hs-container">
-                <h2 id="new-hs-title">
-                    You Got A New High Score!
-                </h2>
-                <form id="hs-interactive-container">
-                    <input class="input" id="initials-input" type="text" placeholder="Your Initials">
-                    <button disabled type="button" class="btn" id="sumbit-name-btn" >Submit</button>
+            <!-------------------------GAME SCREEN-------------------->
+            <section id="game-screen">
+                <div id="current-stats-container">
+                    <p class="game-stat" id="right-wrong-display"></p>
+                    <p class="game-stat" id="current-correct-answers-container"></p>
+                </div>
+                <form id="interactive-container" spellcheck="false">
+                    <input class="input" id="answer-input" type="text" placeholder="Your Answer">
+                    <div id="game-buttons-container">
+                        <button type="button" class="btn" id="play-word-btn">Play Word</button>
+                        <button type="submit" class="btn" id="submit-answer-btn">Submit</button>
+                    </div>
                 </form>
-            </div>
-            <div id="final-lists-container">
-                <div class="list" id="game-words">
-                    <h2>Words:</h2>
-                    <ol id="words-list"></ol>
+                <div id="def-container">
+                    <h2>Definition: </h2>
+                    <div id="def-p-container">
+                        <p id="def">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                    </div>
                 </div>
-                <div class="list" id="user-answers">
-                    <h2>Your Answers:</h2>
-                    <ol id="answers-list"></ol>
+            </section>
+
+            <!-------------------------END SCREEN-------------------->
+            <section id="end-screen">
+                <div id="final-score-display">
+                    <p id="final-score">8/10</p>
                 </div>
-            </div>
-        </section>
+                <div id="new-hs-container">
+                    <h2 id="new-hs-title">
+                        You Got A New High Score!
+                    </h2>
+                    <form id="hs-interactive-container">
+                        <input class="input" id="initials-input" type="text" placeholder="Your Initials">
+                        <button disabled type="button" class="btn" id="sumbit-name-btn" onclick="saveHighScore(event)">Submit</button>
+                    </form>
+                </div>
+                <div id="final-lists-container">
+                    <div class="list" id="game-words">
+                        <h2>Words:</h2>
+                        <ol id="words-list"></ol>
+                    </div>
+                    <div class="list" id="user-answers">
+                        <h2>Your Answers:</h2>
+                        <ol id="answers-list"></ol>
+                    </div>
+                </div>
+            </section>
 
-        <!---------------------TOP SCORE TABLE----------------------->
-        <section id="top-score" class="flex justify-center">
-          <table>
-						<thead>
-							<tr>
-								<th colspan="2">Top Scores</th>
-							</tr>
-							<tr>
-								<th>Name</th>
-								<th>Score</th>
-							</tr>
-						</thead>
-						<tbody id="score-table"></tbody>
-          </table>
-        </section>
+        </div>
 
+         <!---------------------TOP SCORE TABLE----------------------->
+         <section id="top-score" class=" col-start-1 col-span-5 lg:col-start-1 lg:col-span-1 md:col-start-1 md:col-span-1 ">
+            <table class="w-full lg:w-full md:w-full ">
+                <thead>
+                    <tr>
+                        <th colspan="2">Top Scores</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="score-table"></tbody>
+            </table>
+        </section>
     </main>
 
     <script src="assets/js/script.js"></script>

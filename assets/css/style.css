@@ -30,7 +30,7 @@ h2 {
 /* top score table */
 table, tr, th, td {
   border: 2px solid black;
-  width: 30%;
+  
   animation: growIn 1s;
 }
 
