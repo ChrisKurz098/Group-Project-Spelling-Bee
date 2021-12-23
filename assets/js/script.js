@@ -10,6 +10,8 @@ initTopScore();
 //populates top score table
 displayTopScores();
 
+let playerRank = null;
+
 //submit answer button
 var submitBtnEl = document.querySelector("#submit-answer-btn");
 //play word button
@@ -56,23 +58,23 @@ function initTopScore() {
     if (!checkIfHighScore) {
         let defaultScore = [{
             name: "Fred",
-            score: 80
+            score: 8
         },
         {
             name: "Sally",
-            score: 60
+            score: 6
         },
         {
             name: "Bill",
-            score: 40
+            score: 4
         },
         {
             name: "Ted",
-            score: 20
+            score: 2
         },
         {
             name: "Greg",
-            score: 10
+            score: 1
         }];
         //save default top scores from above to localStorage
         saveTopScores(defaultScore);
@@ -275,6 +277,10 @@ var loadEndScreen = function () {
         // append it to ordered list
         userAnswersEl.appendChild(userAnswerEl);
     }
+    playerRank =  checkHighScore();
+    if (playerRank == 10){
+        document.getElementById("new-hs-container").style.display="none";
+    }
 }
 
 
@@ -290,7 +296,7 @@ const sumbitNameBtn = document.getElementById('sumbit-name-btn');
 ////getting top score to sort
 const topScores = localStorage.getItem('topScores');
 ///////allows us to acceses the local storage to pull scores
-const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
 console.log(JSON.parse(localStorage.getItem("highScores")));
 
 ///////////////////Variable to set max\\\
@@ -304,30 +310,59 @@ intialsInput.addEventListener('keyup', () => {
     
 });
 
-
-
 saveHighScore = (e) => {
+    highScores = loadTopScores();
 //////button becomes available it allows the user to click by removing default disabled
 console.log("clicked save button")
 e.preventDefault();
-////////////////////////////score object that has score
-const score = {
-    score: topScores,
-    name: intialsInput.value,
-};
-highScores.push(score);
-console.log(highScores)
-////////////////////////////sort high to lowest score must be greater than 0 to be sort and cut off the 5th
-highScores.sort((a, b) => b.score - a.score);
-///////////////////////////////////high scores are spliced at 5th index
-highScores.splice(5);
+let newName = document.getElementById("initials-input").value;
+    let scoreList = loadTopScores();
+    /*Represents how many array items we need to change based off what rank the player got. in short: how many times the for loop loops */
+    let numChange = (scoreList.length - 1) - playerRank;
+    /*there are array indexes 0-4. we want to put [3] into [4], then [2] into [3] and so on.
+    We need to start on the second to last index (3) */
+    let numStart = 3;
 
-////////update top set item needed to update scores json save in string
-localStorage.setItem('topScores', JSON.stringify(topScores));
+    /*This is my code for adding an array object to a spot in the array,
+    pushing all the array elements down one by changing their values to the values of the object above them
+    until we reach the index of the players score position*/
+    for (i = 0; i < numChange; i++) {
+        //get the values of the array we want to move down
+        let oldName = scoreList[numStart].name;
+        let oldScore = scoreList[numStart].score;
+        //make new variable (ii) = the next score
+        let ii = numStart + 1;
+        //store the values of the above score to the score below
+        scoreList[ii].name = oldName;
+        scoreList[ii].score = oldScore;
+        //make numStart = the next highest score then repeat
+        numStart--;
+    }
+
+
+    newName = newName.slice(0, 9);
+    // save score and anme to array
+    scoreList[playerRank].name = newName;
+    scoreList[playerRank].score = correctAnswers;
+
+
+saveTopScores(scoreList);
 /////////////////////sends the page to go to the start
-location.reload()
+location.reload();
 };
 
+function checkHighScore() {
+    topScoreArray = loadTopScores();
+    //check each score in the array from top to bottom
+    for (i = 0; i < topScoreArray.length; i++) {
+
+        if (correctAnswers > topScoreArray[i].score) {
+            return i; //return where the player score should go in the array
+        }
+    }
+    //if the player didnt beat a score return null
+    return 10;
+}
 
 submitBtnEl.addEventListener("click", userAnswerHandler);
 //event listener for Play Word button
