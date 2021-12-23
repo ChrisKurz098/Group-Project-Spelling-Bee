@@ -323,6 +323,7 @@ highScores.splice(5);
 
 ////////update top set item needed to update scores json save in string
 localStorage.setItem('topScores', JSON.stringify(topScores));
+location.reload()
 };
 
 
