@@ -9,7 +9,8 @@ var scoreTableEl = document.getElementById("score-table");
 initTopScore();
 //populates top score table
 displayTopScores();
-
+//Needed for top score calculations
+let topScoreIndex = null;
 //submit answer button
 var submitBtnEl = document.querySelector("#submit-answer-btn");
 //play word button
@@ -56,23 +57,23 @@ function initTopScore() {
     if (!checkIfHighScore) {
         let defaultScore = [{
             name: "Fred",
-            score: 80
+            score: 8
         },
         {
             name: "Sally",
-            score: 60
+            score: 6
         },
         {
             name: "Bill",
-            score: 40
+            score: 4
         },
         {
             name: "Ted",
-            score: 20
+            score: 2
         },
         {
             name: "Greg",
-            score: 10
+            score: 1
         }];
         //save default top scores from above to localStorage
         saveTopScores(defaultScore);
@@ -250,6 +251,8 @@ var loadEndScreen = function () {
     var finalScore = document.querySelector("#final-score");
     var gameWordsEl = document.querySelector("#words-list");
     var userAnswersEl = document.querySelector("#answers-list");
+    var topScoreFormEl = document.getElementById("new-hs-container");
+    topScoreFormEl.style.display = "none";
     //display your score of correct answers
     finalScore.innerHTML = "Correct Answers: " + correctAnswers;
     //display game words and users answers for comparison
@@ -268,8 +271,24 @@ var loadEndScreen = function () {
         // append it to ordered list
         userAnswersEl.appendChild(userAnswerEl);
     }
+ 
+ topScoreIndex = checkIfTopScore();
+console.log(topScoreIndex);
+    if (topScoreIndex === null){console.log("No Top Score")} else {topScoreFormEl.style.display = "block";}
 }
 
+//Checks if the player beat any high scores and returns the index number for the score they beat
+function checkIfTopScore(){
+    topScoreArray = loadTopScores();
+    for (i = 0; i < topScoreArray.length; i++) {
+
+        if (correctAnswers > topScoreArray[i].score) {
+            return i; //return where the player score should go
+        }
+        
+    }
+    return null;
+}
 
 //set variables
 const intialsInput = document.getElementById('initials-input');
@@ -287,11 +306,44 @@ intialsInput.addEventListener('keyup', () => {
 });
 
 //////save button function
-saveHighScore = (e) => {
+function saveHighScore() {
 
 console.log("clicked save button")
 
+let newName = intialsInput.value;
+let scoreList = loadTopScores();
+/*Represents how many array items we need to change based off what rank the player got. in short: how many times the for loop loops */
+let numChange = (scoreList.length - 1) - topScoreIndex;
+/*there are array indexes 0-4. we want to put [3] into [4], then [2] into [3] and so on.
+We need to start on the second to last index (3) */
+let numStart = 3;
 
+/*This is my code for adding an array object to a spot in the array,
+pushing all the array elements down one by changing their values to the values of the object above them
+until we reach the index of the players score position*/
+for (i = 0; i < numChange; i++) {
+    //get the values of the array we want to move down
+    let oldName = scoreList[numStart].name;
+    let oldScore = scoreList[numStart].score;
+    //make new variable (ii) = the next score
+    let ii = numStart + 1;
+    //store the values of the above score to the score below
+    scoreList[ii].name = oldName;
+    scoreList[ii].score = oldScore;
+    //make numStart = the next highest score then repeat
+    numStart--;
+
+}
+
+//truncate user name
+newName = newName.slice(0, 9)
+// save score and anme to array
+scoreList[topScoreIndex].name = newName;
+scoreList[topScoreIndex].score = correctAnswers;
+//update localSotrage
+saveTopScores(scoreList);
+
+location.reload();
 };
 
 
