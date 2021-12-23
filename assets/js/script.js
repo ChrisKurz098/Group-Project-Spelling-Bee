@@ -279,27 +279,40 @@ var loadEndScreen = function () {
 
 
 //set variables
+////gets intials input
 const intialsInput = document.getElementById('initials-input');
+///////////gets the submit button 
 const sumbitNameBtn = document.getElementById('sumbit-name-btn');
+
+
+////////////////////////////////////////////////////////////pull score from the end screen
 
 ////getting top score to sort
 const topScores = localStorage.getItem('topScores');
-
+///////allows us to acceses the local storage to pull scores
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+console.log(JSON.parse(localStorage.getItem("highScores")));
 
 ////////reacts to changes to intial input feild
 intialsInput.addEventListener('keyup', () => {
     console.log(intialsInput.value);
-    ////////////////keeps button dis abled unill text is typed in
+    ////////////////keeps button disabled untill text is typed in
     sumbitNameBtn.disabled = !intialsInput.value;
 });
 
-//////save button function
-saveHighScore = (e) => {
 
+
+saveHighScore = (e) => {
+//////button becomes available it allows the user to click by removing default disabled
 console.log("clicked save button")
 e.preventDefault();
-
-
+////////////////////////////score object that has score
+const score = {
+    score: topScores,
+    name: intialsInput.value,
+};
+highScores.push(score);
+console.log(highScores)
 };
 
 
