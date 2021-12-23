@@ -301,6 +301,7 @@ intialsInput.addEventListener('keyup', () => {
     console.log(intialsInput.value);
     ////////////////keeps button disabled untill text is typed in
     sumbitNameBtn.disabled = !intialsInput.value;
+    
 });
 
 
@@ -323,6 +324,7 @@ highScores.splice(5);
 
 ////////update top set item needed to update scores json save in string
 localStorage.setItem('topScores', JSON.stringify(topScores));
+/////////////////////sends the page to go to the start
 location.reload()
 };
 
