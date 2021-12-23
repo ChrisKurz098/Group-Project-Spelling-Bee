@@ -187,7 +187,7 @@ function playVoice(text) {
     let player = document.getElementById("audioPlayer");
     //no need to fetch api url. Just put the url into the source for the audio player to play
     
-    let audio = "http://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&c=MP3&f=16khz_16bit_stereo&src=" + text;
+    let audio = "https://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&c=MP3&f=16khz_16bit_stereo&src=" + text;
     player.src = audio;
     player.play();
 }
@@ -299,9 +299,10 @@ const MAX_HIGH_SCORES = 5;
 ////////reacts to changes to intial input feild
 intialsInput.addEventListener('keyup', () => {
     console.log(intialsInput.value);
-    ////////////////keeps button disabled untill text is typed in true = false 
+
+    ////////////////keeps button disabled untill text is typed in true = false
     sumbitNameBtn.disabled = !intialsInput.value;
-    
+
 });
 
 
@@ -315,8 +316,9 @@ const score = {
     score: topScores,
     name: intialsInput.value,
 };
+
 highScores.push(score);
-console.log(highScores)
+console.log(highScores);
 ////////////////////////////sort high to lowest score must be greater than 0 to be sort and cut off the 5th
 highScores.sort((a, b) => b.score - a.score);
 ///////////////////////////////////high scores are spliced at 5th index
@@ -325,10 +327,10 @@ highScores.splice(5);
 ////////update top set item needed to update scores json save in string
 localStorage.setItem('topScores', JSON.stringify(topScores));
 /////////////////////sends the page to go to the start
-location.reload()
+location.reload();
 };
 
-
 submitBtnEl.addEventListener("click", userAnswerHandler);
+
 //event listener for Play Word button
 playWordBtnEl.addEventListener("click", generateVoiceText);
