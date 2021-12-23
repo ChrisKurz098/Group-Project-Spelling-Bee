@@ -299,7 +299,7 @@ const MAX_HIGH_SCORES = 5;
 ////////reacts to changes to intial input feild
 intialsInput.addEventListener('keyup', () => {
     console.log(intialsInput.value);
-    ////////////////keeps button disabled untill text is typed in
+    ////////////////keeps button disabled untill text is typed in true = false 
     sumbitNameBtn.disabled = !intialsInput.value;
     
 });
