@@ -293,6 +293,9 @@ const topScores = localStorage.getItem('topScores');
 const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 console.log(JSON.parse(localStorage.getItem("highScores")));
 
+///////////////////Variable to set max\\\
+const MAX_HIGH_SCORES = 5;
+
 ////////reacts to changes to intial input feild
 intialsInput.addEventListener('keyup', () => {
     console.log(intialsInput.value);
@@ -313,6 +316,10 @@ const score = {
 };
 highScores.push(score);
 console.log(highScores)
+////////////////////////////sort high to lowest score must be greater than 0 to be sorte and cut off the 5th
+highScores.sort((a, b) => b.score - a.score);
+///////////////////////////////////high scores are spliced at 5th index
+highScores.splice(5);
 };
 
 
