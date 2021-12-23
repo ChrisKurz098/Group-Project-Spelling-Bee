@@ -4,6 +4,7 @@
 }
 
 #spelling-bee-container{
+  padding-bottom: 30px;
   background-color: khaki;
   border: black solid 3px;
   border-radius: 20px;
@@ -25,16 +26,12 @@ header {
   border: 2px solid black;
 }
 
-button .btn{
-  border: 2px solid black;
-  border-radius: 5px;
-  /* background-color:darkred;
-  color:white; */
-}
 
 
 /* top score table */
 #top-score{
+  height: 193px;
+ 
   border: black solid 3px;
   border-radius: 20px;
 }
@@ -68,7 +65,51 @@ table, tr, th, td {
   
 /* start screen */
 #start-btn {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-top:  15px;
+  color: aliceblue;
+  background-color: darkred;
   animation: bounce 1s infinite alternate;
+}
+
+#game-buttons-container {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#submit-answer-btn{
+  flex: 1;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: aliceblue;
+  background-color: darkred;
+  /* background-color:darkred;
+  color:white; */
+}
+
+#sumbit-name-btn{
+  border: 2px solid black;
+  border-radius: 5px;
+  color: aliceblue;
+  background-color: darkred;
+  /* background-color:darkred;
+  color:white; */
+}
+
+
+
+#play-word-btn{
+  flex: 1;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: aliceblue;
+  background-color: darkred;
+  /* background-color:darkred;
+  color:white; */
 }
 
 /* game screen */
@@ -83,18 +124,21 @@ form input {
   border-radius: 5px;
 }
 
-#game-buttons-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
+
 
 #def-container{
-  display: flex;
+  border-top: black solid 3px;
+  
+  
+  padding: 10px;
 }
-
+#def-header{
+  text-decoration: underline;
+  font-weight: bold;
+}
 #def-p-container{
  width: 100%;
+
 }
 
 /* end screen */
@@ -110,7 +154,17 @@ form input {
 
 #final-lists-container{
   display: flex;
+  
   justify-content: center;
+}
+#border{
+ text-decoration: underline;
+}
+#game-words,#user-answers{
+  width: 150px;
+  border: black solid 3px;
+  border-radius: 20px;
+  margin: 10px;
 }
 
 /* styling for answer results */

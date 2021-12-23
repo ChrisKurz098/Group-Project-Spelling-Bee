@@ -31,7 +31,7 @@
                 <div>
                     <h2 >Spell as many words as you can correctly!<br>3 strikes and you're OUT!</h2>
                     <h3>Press Start to Begin</h3>
-                    <button id="start-btn" onclick="main()">START</button>
+                    <button id="start-btn"  onclick="main()">START</button>
                 </div>
             </section>
             
@@ -44,12 +44,12 @@
                 <form id="interactive-container" spellcheck="false">
                     <input class="input" id="answer-input" type="text" placeholder="Your Answer">
                     <div id="game-buttons-container">
-                        <button class="bg-red" type="button" class="btn" id="play-word-btn">Play Word</button>
-                        <button class="bg-red" type="submit" class="btn" id="submit-answer-btn">Submit</button>
+                        <button class="bg-red"  type="button" class="btn" id="play-word-btn">Play Word</button>
+                        <button class="bg-red"  type="submit" class="btn" id="submit-answer-btn">Submit</button>
                     </div>
                 </form>
                 <div id="def-container">
-                    <h2>Definition: </h2>
+                    <h2 id="def-header">Definition: </h2>
                     <div id="def-p-container">
                         <p id="def">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                     </div>
@@ -74,11 +74,11 @@
                 </div>
                 <div id="final-lists-container">
                     <div class="list" id="game-words">
-                        <h2>Words:</h2>
+                        <h2 id="border">Words:</h2>
                         <ol id="words-list"></ol>
                     </div>
                     <div class="list" id="user-answers">
-                        <h2>Your Answers:</h2>
+                        <h2 id="border">Your Answers:</h2>
                         <ol id="answers-list"></ol>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
         </div>
 
         <!---------------------TOP SCORE TABLE----------------------->
-        <section id="top-score" class=" col-start-1 col-span-10  md:col-start-1 md:col-span-1 ">
+        <section id="top-score" class=" col-start-4 col-span-4 mt-3  md:col-start-1 md:col-span-1 md:w-fit md:mt-0 ">
             <table class="w-full lg:w-full md:w-full " id="hs-table">
                 <thead>
                     <tr id="table-title">
