@@ -14,12 +14,7 @@ html{
 }
 
 div{
-  margin: 10px;
   animation: growIn 1s
-}
-
-p {
-  margin: 10px;
 }
 
 header {
@@ -74,7 +69,6 @@ table, tr, th, td {
 /* start screen */
 #start-btn {
   animation: bounce 1s infinite alternate;
-  /* padding: 10px; */
 }
 
 /* game screen */
