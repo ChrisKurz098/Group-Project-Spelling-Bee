@@ -316,10 +316,13 @@ const score = {
 };
 highScores.push(score);
 console.log(highScores)
-////////////////////////////sort high to lowest score must be greater than 0 to be sorte and cut off the 5th
+////////////////////////////sort high to lowest score must be greater than 0 to be sort and cut off the 5th
 highScores.sort((a, b) => b.score - a.score);
 ///////////////////////////////////high scores are spliced at 5th index
 highScores.splice(5);
+
+////////update top set item needed to update scores json save in string
+localStorage.setItem('topScores', JSON.stringify(topScores));
 };
 
 
