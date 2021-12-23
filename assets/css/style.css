@@ -80,6 +80,15 @@ table, tr, th, td {
   justify-content: center;
 }
 
+/* styling for answer results */
+.incorrect {
+  color: red;
+}
+
+.correct {
+  color: green;
+}
+
 
 
 /*--------------------------ANIMATIONS------------------------------*/
