@@ -1,0 +1,154 @@
+/*THESE ARE TEMP STYLES TO MAKE THINGS EASIER TO LOOK AT*/
+*{
+    text-align: center;
+}
+
+#spelling-bee-container{
+  background-color: khaki;
+  border: black solid 3px;
+  border-radius: 20px;
+}
+
+html{
+  background-color: lightblue;
+}
+
+div{
+  animation: growIn 1s
+}
+
+header {
+  font-size: 40px;
+}
+
+.input {
+  border: 2px solid black;
+}
+
+button .btn{
+  border: 2px solid black;
+  border-radius: 5px;
+  /* background-color:darkred;
+  color:white; */
+}
+
+
+/* top score table */
+#top-score{
+  border: black solid 3px;
+  border-radius: 20px;
+}
+
+table{
+  background-color: khaki;
+  border-radius: 20px;
+}
+
+table, tr, th, td {
+  animation: growIn 1s;
+}
+
+#hs-table tr:nth-child(even){
+  background-color: rgba(0, 0, 0, 0.153);
+}
+
+#name-score-title{
+  border-width: 2px 0 2px 0;
+  border-style: solid;
+  border-color: black;
+}
+
+#table-title{
+  font-weight: bolder;
+}
+
+#name-score-title{
+  font-weight: bold;
+}
+  
+/* start screen */
+#start-btn {
+  animation: bounce 1s infinite alternate;
+}
+
+/* game screen */
+
+#current-stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+form input {
+  border-radius: 5px;
+}
+
+#game-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#def-container{
+  display: flex;
+}
+
+#def-p-container{
+ width: 100%;
+}
+
+/* end screen */
+#final-score-display{
+  display: flex;
+  justify-content: center;
+}
+
+#new-hs-container{
+  display:flex;
+  flex-direction: column;
+}
+
+#final-lists-container{
+  display: flex;
+  justify-content: center;
+}
+
+/* styling for answer results */
+.incorrect {
+  color: red;
+}
+
+.correct {
+  color: green;
+}
+
+
+
+/*--------------------------ANIMATIONS------------------------------*/
+@keyframes bounce {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(2);
+    }
+    /*use this with - animation: bounce 1s infinite alternate*/
+
+}
+
+@keyframes loading {
+  from  {transform: scale(.8,1);}
+  to  {transform: scale(1..8);}
+
+    /*use this with - animation: loading 3s infinite alternate*/
+
+}
+
+@keyframes growIn {
+    from {
+        transform: scale(0);
+    }
+ 
+    /*use this with - animation: growIn 1s*/
+
+}

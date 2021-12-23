@@ -1,16 +1,110 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--INSERT CSS library here-->
-    <link rel = "stylesheet" href = "assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Spelling Bee</title>
 </head>
+
 <body>
-    <!--This first script is the TTS SDK-->
-    <script src = "assets/js/voicerss-tts.min.js"></script>
+  
+    <!---------This Is The Audio Player (always hidden)-------->
+    <audio hidden id="audioPlayer" src=""></audio>
+    <!--------------------------------------------------------->
+
+    <main class="p-5 grid grid-flow-row-dense grid-cols-10 grid-rows-1">
+        
+       
+        <div class=" md:col-start-3 md:col-span-6 sm:col-start-1 col-span-10" id="spelling-bee-container">
+            
+            <header>
+                <h1>Spelling Bee</h1>
+            </header>
+            <!-------------------------START SCREEN-------------------->
+            <section id="start-screen">
+                <div>
+                    <h2 >Spell as many words as you can correctly!<br>3 strikes and you're OUT!</h2>
+                    <h3>Press Start to Begin</h3>
+                    <button id="start-btn" onclick="main()">START</button>
+                </div>
+            </section>
+            
+            <!-------------------------GAME SCREEN-------------------->
+            <section id="game-screen">
+                <div id="current-stats-container">
+                    <p class="game-stat" id="right-wrong-display"></p>
+                    <p class="game-stat" id="current-correct-answers-container"></p>
+                </div>
+                <form id="interactive-container" spellcheck="false">
+                    <input class="input" id="answer-input" type="text" placeholder="Your Answer">
+                    <div id="game-buttons-container">
+                        <button class="bg-red" type="button" class="btn" id="play-word-btn">Play Word</button>
+                        <button class="bg-red" type="submit" class="btn" id="submit-answer-btn">Submit</button>
+                    </div>
+                </form>
+                <div id="def-container">
+                    <h2>Definition: </h2>
+                    <div id="def-p-container">
+                        <p id="def">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-------------------------END SCREEN-------------------->
+            <section id="end-screen">
+                <div id="final-score-display">
+                    <p id="final-score">8/10</p>
+                </div>
+                <div id="new-hs-container">
+                    <h2 id="new-hs-title">
+                        You Got A New High Score!
+                    </h2>
+                    <form id="hs-interactive-container">
+                        <input class="input" id="initials-input" type="text" placeholder="Your Initials">
+
+                        <button disabled type="button" class="btn" id="sumbit-name-btn" onclick="saveHighScore(event)"disabled>Submit</button>
+
+                    </form>
+                </div>
+                <div id="final-lists-container">
+                    <div class="list" id="game-words">
+                        <h2>Words:</h2>
+                        <ol id="words-list"></ol>
+                    </div>
+                    <div class="list" id="user-answers">
+                        <h2>Your Answers:</h2>
+                        <ol id="answers-list"></ol>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!---------------------TOP SCORE TABLE----------------------->
+        <section id="top-score" class=" col-start-1 col-span-10  md:col-start-1 md:col-span-1 ">
+            <table class="w-full lg:w-full md:w-full " id="hs-table">
+                <thead>
+                    <tr id="table-title">
+                        <th colspan="2">Top Scores</th>
+                    </tr>
+                    <tr id="name-score-title">
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="score-table"></tbody>
+            </table>
+        </section>
+    </main>
+
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
+
