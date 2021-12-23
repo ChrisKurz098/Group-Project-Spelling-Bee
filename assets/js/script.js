@@ -279,26 +279,53 @@ var loadEndScreen = function () {
 
 
 //set variables
+////gets intials input
 const intialsInput = document.getElementById('initials-input');
+///////////gets the submit button 
 const sumbitNameBtn = document.getElementById('sumbit-name-btn');
+
+
+////////////////////////////////////////////////////////////pull score from the end screen
 
 ////getting top score to sort
 const topScores = localStorage.getItem('topScores');
+///////allows us to acceses the local storage to pull scores
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+console.log(JSON.parse(localStorage.getItem("highScores")));
 
+///////////////////Variable to set max\\\
+const MAX_HIGH_SCORES = 5;
 
 ////////reacts to changes to intial input feild
 intialsInput.addEventListener('keyup', () => {
     console.log(intialsInput.value);
-    ////////////////keeps button dis abled unill text is typed in
+    ////////////////keeps button disabled untill text is typed in true = false 
     sumbitNameBtn.disabled = !intialsInput.value;
+    
 });
 
-//////save button function
+
+
 saveHighScore = (e) => {
-
+//////button becomes available it allows the user to click by removing default disabled
 console.log("clicked save button")
+e.preventDefault();
+////////////////////////////score object that has score
+const score = {
+    score: topScores,
+    name: intialsInput.value,
+};
+highScores.push(score);
+console.log(highScores)
+////////////////////////////sort high to lowest score must be greater than 0 to be sort and cut off the 5th
+highScores.sort((a, b) => b.score - a.score);
+///////////////////////////////////high scores are spliced at 5th index
+highScores.splice(5);
 
-
+////////update top set item needed to update scores json save in string
+localStorage.setItem('topScores', JSON.stringify(topScores));
+/////////////////////sends the page to go to the start
+location.reload()
 };
 
 
