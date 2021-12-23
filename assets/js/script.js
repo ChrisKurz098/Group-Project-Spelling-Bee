@@ -265,6 +265,13 @@ var loadEndScreen = function () {
         var userAnswerEl = document.createElement("li");
         // give it a value
         userAnswerEl.innerHTML = userAnswers[i];
+        // change font color of word. Red for wrong/green for right.
+        if (userAnswers[i] === gameWords[i]) { 
+            userAnswerEl.classList.add('correct');
+     
+        }   else {
+            userAnswerEl.classList.add('incorrect');
+        }
         // append it to ordered list
         userAnswersEl.appendChild(userAnswerEl);
     }
