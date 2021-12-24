@@ -211,3 +211,32 @@ form input {
     /*use this with - animation: growIn 1s*/
 
 }
+
+/*BEEEEEE*/
+#bee {
+  position: fixed;
+   animation: fly 8s linear infinite;
+}
+#sineWave{
+   position: relative;
+   animation: upDown .5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes fly {
+   from{
+
+       
+       left: -60px;
+   }
+
+   to {
+       left: 110vw;
+
+       }
+
+}
+
+@keyframes upDown {
+   from { transform: translatey(0px);}
+   to { transform: translatey(30px);}
+ }
