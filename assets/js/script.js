@@ -232,7 +232,7 @@ var userAnswerHandler = function (event) {
     event.preventDefault();
     //page elements
     var rightWrongDisplay = document.querySelector("#right-wrong-display");
-    var correctAnswersTally = document.querySelector("#current-correct-answers-container");
+    var wrongTally = document.querySelector('#wrong-tally');
     //get data from fetch api
     var word = wordData.word;
     //Receive the users input
@@ -251,11 +251,11 @@ var userAnswerHandler = function (event) {
         rightWrongDisplay.innerHTML = "CORRECT";
         //add tally
         correctAnswers++;
-        correctAnswersTally.innerHTML = correctAnswers;
     }
     else {
         wrongAnswers++;
         rightWrongDisplay.innerHTML = "INCORRECT";
+        wrongTally.innerHTML += '<i class="far fa-times-circle" aria-hidden="true"></i>';
         //after three strikes
         if (wrongAnswers === 3) {
             loadEndScreen();
