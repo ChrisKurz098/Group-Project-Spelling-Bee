@@ -2,6 +2,8 @@
 //very first thing, before any user interaction, is to hide all divs except for start screen
 document.getElementById("game-screen").style.display = "none";
 document.getElementById("end-screen").style.display = "none";
+// sets controls for audio player to true
+document.getElementById("audioPlayer").controls = true;
 // top score table body element
 var scoreTableEl = document.getElementById("score-table");
 //THEN POPULATE TOP SCORES
@@ -16,8 +18,17 @@ let playerRank = null;
 var submitBtnEl = document.querySelector("#submit-answer-btn");
 //play word button
 var playWordBtnEl = document.querySelector("#play-word-btn");
+// pause/play audio button
+var pauseBtnEl = document.querySelector("#pause-btn");
 // users form input element
 var answerInputEl = document.querySelector("#answer-input");
+
+// audio player element
+const player = document.getElementById("audioPlayer");
+// declares audio player properties 
+var src;
+var paused;
+
 let wordData = {};
 var gameWords = [];
 var userAnswers = [];
@@ -192,7 +203,20 @@ function playVoice(text) {
     let audio = "https://api.voicerss.org/?key=b56a5fc94a814d1b9edc00c045483548&hl=en-us&c=MP3&f=16khz_16bit_stereo&src=" + text;
     player.src = audio;
     player.play();
+    //returns audio player.src to be used by toggleAudio function
+    return player.src;
 }
+
+//---------------------------------Toggle Audio Function-----------------------------------//
+function toggleAudio() {
+    console.log("works");
+    if (player.paused) {
+        player.play();
+    } else {
+        player.pause();
+    }
+}
+
 //--------------------------------Generate Voice Text Function-----------------------------//
 function generateVoiceText() {
     let word = wordData.word;
@@ -367,3 +391,5 @@ function checkHighScore() {
 submitBtnEl.addEventListener("click", userAnswerHandler);
 //event listener for Play Word button
 playWordBtnEl.addEventListener("click", generateVoiceText);
+//event listener for pause audio button
+pauseBtnEl.addEventListener("click", toggleAudio);

@@ -100,6 +100,11 @@ table, tr, th, td {
   color:white; */
 }
 
+#pause-btn:hover  {
+  background-color: silver;
+  border-radius: 5px;
+}
+
 
 
 #play-word-btn{
