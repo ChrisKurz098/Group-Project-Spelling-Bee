@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--INSERT CSS library here-->
+    <script src="https://kit.fontawesome.com/4448f5bfa8.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Spelling Bee</title>
@@ -21,7 +22,7 @@
     <main class="p-5 grid grid-flow-row-dense grid-cols-10 grid-rows-1">
         
        
-        <div class=" md:col-start-3 md:col-span-6 sm:col-start-1 col-span-10" id="spelling-bee-container">
+        <div class="md:col-start-3 md:col-span-6 sm:col-start-1 col-span-10" id="spelling-bee-container">
             
             <header>
                 <h1>Spelling Bee</h1>
@@ -45,6 +46,7 @@
                     <input class="input" id="answer-input" type="text" placeholder="Your Answer">
                     <div id="game-buttons-container">
                         <button class="bg-red"  type="button" class="btn" id="play-word-btn">Play Word</button>
+                        <button class= "px-2 fas fa-play btn" type="button" id="pause-btn"><span class="fas fa-pause"></span></button>
                         <button class="bg-red"  type="submit" class="btn" id="submit-answer-btn">Submit</button>
                     </div>
                 </form>
