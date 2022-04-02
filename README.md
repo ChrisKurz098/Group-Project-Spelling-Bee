@@ -9,7 +9,7 @@ This game was created to test your spelling skills. Set a high score by correctl
 - JavaScript
 
 ## Live Link
-## [Click Here](https://chriskurz098.github.io/Group-Project-Spelling-Bee/)
+## [Click Here](https://chriskurz098.github.io/Spelling-Bee/)
 ## Contribution
 - Abigail
 - Christopher
